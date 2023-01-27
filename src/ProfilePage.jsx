@@ -8,7 +8,7 @@ const ProfilePage = () => {
     <>
       <p>ProfilePage</p>
 
-      <h1>{`Hola ${auth.user.username}!`}</h1>
+      <h1>{auth.user ? `Hola ${auth.user.username}!` : `Inicia sesion!`}</h1>
     </>
   );
 };
