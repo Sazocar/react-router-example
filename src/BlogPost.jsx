@@ -1,18 +1,24 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "./auth";
-import { blogdata } from "./blogdata";
+import { useBlog } from "./useBlog";
 
 const BlogPost = () => {
   const navigate = useNavigate();
   const { slug } = useParams();
-  const blogpost = blogdata.find(post => post.slug === slug);
-
+  const blog = useBlog();
   const auth = useAuth();
+
+  const blogpost = blog.data.find(post => post.slug === slug);
 
   const canDelete = auth.user?.isAdmin || blogpost.author === auth.user?.username
 
   const returnToBlog = () => {
     navigate('/blog');
+  }
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    blog.deleteBlog(blogpost.title);
   }
 
   return (
@@ -22,7 +28,7 @@ const BlogPost = () => {
       <p>{blogpost.content}</p>
 
       {canDelete && (
-        <button>Eliminar post</button>
+        <button onClick={handleClick}>Eliminar post</button>
       )}  
 
       <button onClick={returnToBlog}>Volver a Blog</button>
