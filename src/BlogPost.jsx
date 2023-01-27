@@ -18,7 +18,7 @@ const BlogPost = () => {
 
   const handleClick = (event) => {
     event.preventDefault();
-    blog.deleteBlog(blogpost.title);
+    blog.deleteBlog(blogpost.slug);
   }
 
   return (

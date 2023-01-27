@@ -8,15 +8,15 @@ const BlogProvider = ({ children }) => {
   const [data, setData] = useState(blogdata);
   const navigate = useNavigate();
 
-  const deleteBlog = (title) => {
+  const deleteBlog = (slug) => {
     const newBlogData = [...data];
-    const postIndex = newBlogData.findIndex((post) => post.title === title);
-    newBlogData.splice(postIndex, 1);
+    // const postIndex = newBlogData.findIndex((post) => post.slug === slug);
+    // newBlogData.splice(postIndex, 1);
+    // console.log(postIndex);
 
-    console.log(postIndex);
-    console.log(newBlogData);
-    setData(newBlogData);
+    setData(newBlogData.filter(post => post.slug != slug));
     navigate('/blog');
+    console.log(newBlogData);
   };
 
   const blog = {
