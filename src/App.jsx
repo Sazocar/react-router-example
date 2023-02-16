@@ -14,6 +14,7 @@ function App() {
     <>
       <HashRouter>
         <AuthProvider>
+      
           <BlogProvider>
             <Menu />
             <Routes>
